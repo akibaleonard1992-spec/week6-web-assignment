@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpendWise Budget Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>SpendWise</span>
+      </div>
+      <button class="theme-button" id="themeButton" type="button" aria-label="Toggle dark mode">
+        <span id="themeIcon" aria-hidden="true">☾</span>
+      </button>
+    </header>
+
+    <section class="dashboard" aria-label="Budget dashboard">
+      <div class="summary-grid">
+        <article class="summary-card">
+          <p class="card-label">Monthly Budget</p>
+          <p class="card-value" id="budgetValue">KSh 2,500.00</p>
+        </article>
+        <article class="summary-card">
+          <p class="card-label">Total Spent</p>
+          <p class="card-value" id="spentValue">KSh 0.00</p>
+        </article>
+        <article class="summary-card">
+          <p class="card-label">Remaining</p>
+          <p class="card-value" id="remainingValue">KSh 2,500.00</p>
+        </article>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-heading">
+          <div>
+            <p class="card-label">Budget Progress</p>
+            <p class="budget-status" id="budgetStatus">On track</p>
+          </div>
+          <p class="progress-percent" id="progressPercent">0%</p>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Budget used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <section class="panel" aria-labelledby="addExpenseHeading">
+          <h1 id="addExpenseHeading">Add Expense</h1>
+          <form id="expenseForm" novalidate>
+            <div class="field">
+              <label for="expenseName">Expense name</label>
+              <input id="expenseName" name="expenseName" type="text" placeholder="e.g. Groceries" required>
+            </div>
+
+            <div class="field">
+              <label for="expenseAmount">Amount</label>
+              <div class="amount-input">
+                <span aria-hidden="true">KSh</span>
+                <input id="expenseAmount" name="expenseAmount" type="number" min="0.01" step="0.01" placeholder="0.00" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="expenseCategory">Category</label>
+              <select id="expenseCategory" name="expenseCategory" required>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Housing">Housing</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="monthlyBudget">Monthly budget</label>
+              <div class="amount-input">
+                <span aria-hidden="true">KSh</span>
+                <input id="monthlyBudget" name="monthlyBudget" type="number" min="1" step="0.01" value="2500" required>
+              </div>
+            </div>
+
+            <p class="form-message" id="formMessage" role="alert"></p>
+            <button class="primary-button" type="submit">Add Expense</button>
+          </form>
+        </section>
+
+        <section class="panel expenses-panel" aria-labelledby="expensesHeading">
+          <div class="expenses-heading">
+            <h2 id="expensesHeading">Recent Expenses</h2>
+            <span class="expense-count" id="expenseCount">0 expenses</span>
+          </div>
+          <div class="expense-list" id="expenseList">
+            <div class="empty-state" id="emptyState">
+              <div class="empty-icon" aria-hidden="true">◎</div>
+              <p>No expenses yet</p>
+              <span>Add one to start tracking.</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
